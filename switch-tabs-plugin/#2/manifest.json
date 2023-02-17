@@ -1,0 +1,26 @@
+{
+	"manifest_version": 3,
+	"name": "Switch tabs plugin #2",
+	"version": "1.0.0",
+	"commands": {
+		"select-mail": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+3"
+			},
+			"description": "Select mail tab"
+		},
+		"select-soundcloud": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+4"
+			},
+			"description": "Select soundcloud tab"
+		}
+	},
+	"permissions": [
+		"activeTab",
+		"tabs"
+	],
+	"background": {
+		"service_worker": "background.js"
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"manifest_version": 3,
+	"name": "Move tabs plugin",
+	"version": "1.0.0",
+	"commands": {
+		"move-left": {
+			"suggested_key": "Ctrl+Shift+Comma",
+			"description": "Move tab left"
+		},
+		"move-right": {
+			"suggested_key": "Ctrl+Shift+Period",
+			"description": "Move tab right"
+		}
+	},
+	"permissions": [
+		"activeTab",
+		"tabs"
+	],
+	"background": {
+		"service_worker": "background.js"
+	}
+}

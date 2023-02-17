@@ -1,0 +1,30 @@
+{
+	"manifest_version": 3,
+	"name": "Switch tabs plugin #1",
+	"version": "1.0.0",
+	"commands": {
+		"select-vk": {
+			"suggested_key": "Ctrl+Shift+5",
+			"description": "Select vk tab"
+		},
+		"select-youtube": {
+			"suggested_key": "Ctrl+Shift+8",
+			"description": "Select youtube tab"
+		},
+		"select-translator": {
+			"suggested_key": "Ctrl+Shift+7",
+			"description": "Select translator tab"
+		},
+		"select-calculator": {
+			"suggested_key": "Ctrl+Shift+6",
+			"description": "Select calculator tab"
+		}
+	},
+	"permissions": [
+		"activeTab",
+		"tabs"
+	],
+	"background": {
+		"service_worker": "background.js"
+	}
+}
