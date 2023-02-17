@@ -32,7 +32,7 @@ document.addEventListener('click', async (e) => {
 	} else if (newPrevBtnState) {
 		prev = getElementImage(e.target)
 	}
-	let curr = (await storage.get([hostname]))[hostname]
+	let curr = (await storage.get([hostname]))[hostname] || {}
 	console.log('new', { prev: prev || curr.prev, next: next || curr.next });
 	await storage.set({
 		[hostname]:
@@ -52,14 +52,15 @@ function getElementImage(el) {
 	return ({ selector, innerHTML: el.innerHTML })
 }
 function getElementByImage(image) {
-	let el = document.querySelector(image.selector)
+	let el = [...document.querySelectorAll(image.selector)]
+		.filter(el => el.innerHTML === image.innerHTML)[0]
 	console.log('elByImage ', image.selector, el);
 	return el
 }
 async function addHotkeys(e) {
-	if (e.ctrlKey || e.shiftKey || e.altKey || !['ArrowLeft', 'ArrowRight'].includes(e.code)) return
+	if (e.ctrlKey || e.shiftKey || e.altKey || !['ArrowLeft', 'ArrowRight'].includes(e.code) || newPrevBtnState || newNextBtnState) return
 	let { prev, next } = (await storage.get([hostname]))[hostname] || {}
-	console.log(prev, next);
+	console.log('using hotkey', prev, next);
 	if (!next) return
 
 	switch (e.code) {
