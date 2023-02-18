@@ -27,16 +27,17 @@ document.addEventListener('click', async (e) => {
 	if (!newNextBtnState && !newPrevBtnState) return
 	e.preventDefault()
 	let prev, next
+	let curr = (await storage.get([hostname]))[hostname] || {}
 	if (newNextBtnState) {
+		prev = curr.prev
 		next = getElementImage(e.target)
 	} else if (newPrevBtnState) {
 		prev = getElementImage(e.target)
+		next = curr.next
 	}
-	let curr = (await storage.get([hostname]))[hostname] || {}
-	console.log('new', { prev: prev || curr.prev, next: next || curr.next });
+	console.log('new', { prev, next });
 	await storage.set({
-		[hostname]:
-			{ prev: prev || curr.prev, next: next || curr.next }
+		[hostname]: { prev, next }
 	})
 	newNextBtnState = newPrevBtnState = false
 	clearTimeout(timeout)
