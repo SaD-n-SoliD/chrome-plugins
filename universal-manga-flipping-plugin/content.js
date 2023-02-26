@@ -62,7 +62,7 @@ function clickBtn(btn) {
 }
 function mkAttrSelector(attr) {
 	let ignoredAttrs = ['href']
-	return ignoredAttrs.includes(attr.name) ? '' : `[*|${attr.name}="${attr.value}"]`
+	return ignoredAttrs.includes(attr.name) ? `[*|${attr.name}]` : `[*|${attr.name}="${attr.value}"]`
 }
 function getElementImage(el) {
 	let selector = [...el.attributes].reduce((acc, attr) => acc + mkAttrSelector(attr),
