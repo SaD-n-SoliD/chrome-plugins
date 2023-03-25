@@ -11,11 +11,13 @@ document.addEventListener('keydown', (e) => {
 	if (e.code == 'Insert') e.preventDefault()
 	else if (lastKey == 'Insert') {
 		if (e.code == 'ArrowLeft') {
+			e.preventDefault()
 			newPrevBtnState = true
 			newNextBtnState = false
 			clearTimeout(timeout)
 			timeout = setTimeout(() => { newPrevBtnState = false }, 10000);
 		} else if (e.code == 'ArrowRight') {
+			e.preventDefault()
 			newNextBtnState = true
 			newPrevBtnState = false
 			clearTimeout(timeout)
@@ -82,7 +84,7 @@ async function addHotkeys(e) {
 	if (e.ctrlKey || e.shiftKey || e.altKey || !['ArrowLeft', 'ArrowRight'].includes(e.code) || newPrevBtnState || newNextBtnState) return
 	let { prev, next, browserPrev } = (await storage.get([hostname]))[hostname] || {}
 	console.log('using hotkey', prev, next);
-	if (!next) return
+	if (!next && !prev) return
 
 	switch (e.code) {
 		case 'ArrowLeft':
