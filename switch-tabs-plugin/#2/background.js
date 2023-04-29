@@ -5,6 +5,7 @@ const myCommands = {
 	'select-calculator': selectTabFn('https://www.google.com/*', '*калькулятор*'),
 	'select-soundcloud': selectTabFn('https://soundcloud.com/*'),
 	'select-mail': selectTabFn('https://mail.yandex.ru/*'),
+	'open-tab-right': openTabRight,
 }
 chrome.commands.onCommand.addListener((command) => {
 	// console.log(command);
@@ -25,4 +26,13 @@ function selectTabFn(url, title) {
 		const tab = await getTab(url, title);
 		await highlightTab(tab)
 	}
+}
+async function getCurrentTab() {
+	let queryOptions = { active: true, currentWindow: true };
+	let [tab] = await chrome.tabs.query(queryOptions);
+	return tab;
+}
+async function openTabRight() {
+	const currTab = await getCurrentTab();
+	await chrome.tabs.create({ openerTabId: currTab.id, index: currTab.index + 1 })
 }
