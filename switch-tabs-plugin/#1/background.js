@@ -1,7 +1,7 @@
 const myCommands = {
 	'select-vk': selectTabFn('https://vk.com/*'),
 	'select-youtube': selectTabFn('https://www.youtube.com/*'),
-	'select-translator': selectTabFn('https://www.google.com/*', '*переводчик*'),
+	'select-translator': selectTabFn(['https://translate.google.com/*', 'https://translate.yandex.ru/*']),
 	'select-calculator': selectTabFn('https://www.google.com/*', '*калькулятор*'),
 	'select-soundcloud': selectTabFn('https://soundcloud.com/*'),
 	'select-mail': selectTabFn('https://mail.yandex.ru/*'),
