@@ -60,7 +60,8 @@ window.addEventListener('contextmenu', async (e) => {
 });
 
 function clickBtn(btn) {
-	btn.dispatchEvent(new Event('click', { bubbles: true }))
+	// ох..фигеть - не встать. в некоторых местах это сработает только если создать не Event а именно MouseEvent. не говоря уже о том, что без { bubbles: true } событие не будет всплывать
+	btn.dispatchEvent(new MouseEvent('click', { bubbles: true }))
 }
 function mkAttrSelector(attr) {
 	let ignoredAttrs = ['href']
